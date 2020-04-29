@@ -57,13 +57,13 @@ namespace SimpleDemos
                     ASL.ASLHelper.InstanitateASLObject("PingPongBallPrefab",
                         new Vector3(1, 1, 1), Quaternion.identity, "InteractiveContainer", "",
                         ClaimObjectUponCreation,
-                        null,
+                        ClaimRecoveryFunction,
                         null);
 
                     ASL.ASLHelper.InstanitateASLObject("ASLSyncObject",
                         new Vector3(1, 1, 1), Quaternion.identity, "InteractiveContainer", "",
                         ClaimObjectUponCreation,
-                        null,
+                        ClaimRecoveryFunction,
                         null);
                 }
             }
@@ -72,27 +72,25 @@ namespace SimpleDemos
         public void CreatePlayerAvatars()
         {
             ASL.ASLHelper.InstanitateASLObject("PlayerBody",
-                    new Vector3(Random.Range(-2f, 2f), Random.Range(0f, 2f), Random.Range(-2f, 2f)), Quaternion.identity, "", "",
-                    ClaimObjectUponCreation,
-                    null,
+                    new Vector3(Random.Range(-5f, 5f), Random.Range(5f, 5f), Random.Range(-5f, 5f)), Quaternion.identity, "", "",
+                    CreateAndAddObjectToList,
+                    ClaimRecoveryFunction,
                     null);
-            /*
             ASL.ASLHelper.InstanitateASLObject("Cube_PlayerHead",
                     new Vector3(Random.Range(-2f, 2f), Random.Range(0f, 2f), Random.Range(-2f, 2f)), Quaternion.identity, "", "",
-                    ClaimObjectUponCreation,
-                    null,
+                    CreateAndAddObjectToList,
+                    ClaimRecoveryFunction,
                     null);
             ASL.ASLHelper.InstanitateASLObject("GizmoLeft",
                     new Vector3(Random.Range(-2f, 2f), Random.Range(0f, 2f), Random.Range(-2f, 2f)), Quaternion.identity, "", "",
-                    ClaimObjectUponCreation,
-                    null,
+                    CreateAndAddObjectToList,
+                    ClaimRecoveryFunction,
                     null);
             ASL.ASLHelper.InstanitateASLObject("GizmoRight",
                     new Vector3(Random.Range(-2f, 2f), Random.Range(0f, 2f), Random.Range(-2f, 2f)), Quaternion.identity, "", "",
-                    ClaimObjectUponCreation,
-                    null,
+                    CreateAndAddObjectToList,
+                    ClaimRecoveryFunction,
                     null);
-            */
         }
 
         /// <summary>
@@ -113,7 +111,7 @@ namespace SimpleDemos
         /// This is called immediately upon creation, allowing the user a way to access their newly created object after the server has spawned it
         /// </summary>
         /// <param name="_gameObject">The gameobject that was created</param>
-        public static void WhatToDoWithMyOtherGameObjectNowThatItIsCreated(GameObject _gameObject)
+        public static void CreateAndAddObjectToList(GameObject _gameObject)
         {
             //An example of how we can get a handle to our object that we just created but want to use later
             m_HandleToFreshObjects.Add(_gameObject);
@@ -126,7 +124,6 @@ namespace SimpleDemos
         /// <param name="_cancelledCallbacks">The amount of claim callbacks that were cancelled</param>
         public static void ClaimRecoveryFunction(string _id, int _cancelledCallbacks)
         {
-            /*
             Debug.Log("Aw man. My claim got rejected for my object with id: " + _id + " it had " + _cancelledCallbacks + " claim callbacks to execute.");
             //If I can't have this object, no one can. (An example of how to get the object we were unable to claim based on its ID and then perform an action). Obviously,
             //deleting the object wouldn't be very nice to whoever prevented your claim
@@ -134,7 +131,6 @@ namespace SimpleDemos
             {
                 _myObject.GetComponent<ASL.ASLObject>().DeleteObject();
             }
-            */
         }
 
         /// <summary>

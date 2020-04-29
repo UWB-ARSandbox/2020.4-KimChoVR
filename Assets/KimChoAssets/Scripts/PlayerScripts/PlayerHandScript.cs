@@ -78,6 +78,14 @@ public class PlayerHandScript : MonoBehaviour
             selectedObject = null;
         }
 
+        if (other.tag == "Grabbable")
+        {
+            if (other.GetComponent<ObjectController>() != null)
+            {
+                selectedObject = other.gameObject;
+            }
+        }
+
         if (selectedObject == null)
         {
             return;

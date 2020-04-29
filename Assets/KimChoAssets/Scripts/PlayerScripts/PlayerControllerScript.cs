@@ -17,6 +17,9 @@ public class PlayerControllerScript : MonoBehaviour
     private bool jumped;
     private float timer;
 
+    private Vector3 playSpaceOffset;
+    private Vector3 adjustmentOffset;
+
     void Start()
     {
         playerView = GameObject.FindGameObjectWithTag("MainCamera");
@@ -28,6 +31,7 @@ public class PlayerControllerScript : MonoBehaviour
         jumped = false;
 
         this.transform.position = playerView.transform.position;
+        playSpaceOffset = playerView.transform.position - playSpace.transform.position;
     }
 
     // Update is called once per frame
@@ -35,6 +39,7 @@ public class PlayerControllerScript : MonoBehaviour
     {
         if (!this.GetComponent<ASL.ASLObject>().m_Mine)
         {
+            onlineController.m_SendAdditiveTransform = false;
             return;
         }
 
@@ -47,7 +52,13 @@ public class PlayerControllerScript : MonoBehaviour
     {
         if (!this.GetComponent<ASL.ASLObject>().m_Mine)
         {
+            onlineController.m_SendAdditiveTransform = false;
             return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.JoystickButton6) || Input.GetKeyDown(KeyCode.JoystickButton7))
+        {
+            playSpaceOffset = playerView.transform.position - playSpace.transform.position;
         }
 
         handleJumpInput();
@@ -56,17 +67,18 @@ public class PlayerControllerScript : MonoBehaviour
     private void handleMovementInput()
     {
         //Vector3 playerViewOffset = this.transform.position - playerView.transform.position;
-        Vector3 playSpaceOffset = playerView.transform.position - playSpace.transform.position;
+        //Vector3 playSpaceOffset = playerView.transform.position - playSpace.transform.position;
+        //float rotateAmount = Input.GetAxis("AXIS_19") * playerStats.floatScript.m_MyFloats[3];
         Vector3 additativeAmount = new Vector3(playerView.transform.forward.x, 0, playerView.transform.forward.z) * -Input.GetAxis("AXIS_18") * playerStats.floatScript.m_MyFloats[2] * Time.fixedDeltaTime;
-        float rotateAmount = Input.GetAxis("AXIS_19") * playerStats.floatScript.m_MyFloats[3];
 
         // Handle Online Positioning
         onlineController.m_AdditiveMovementAmount = additativeAmount;
         onlineController.m_MyRotationAxis = SimpleDemos.TransformObjectViaLocalSpace_Example.RotationAxis.y;
-        onlineController.m_Angle = rotateAmount;
+        //onlineController.m_Angle = rotateAmount;
         onlineController.m_SendAdditiveTransform = true;
-        playSpace.transform.position = this.transform.position - playSpaceOffset;
-        playSpace.transform.rotation = this.transform.rotation;
+
+        //playSpace.transform.rotation = this.transform.rotation;
+        playSpace.transform.position = this.transform.position - playSpaceOffset + new Vector3(0, 0.7f, 0);
 
         if (timer >= 5)
         {
@@ -74,7 +86,7 @@ public class PlayerControllerScript : MonoBehaviour
             this.onlineController.m_MoveToPosition = this.transform.position;
 
             // Handle Scale
-            this.onlineController.m_ScaleToAmount = new Vector3(0.2f, 0.4f, 0.2f);
+            this.onlineController.m_ScaleToAmount = new Vector3(0.2f, 0.6f, 0.2f);
 
             // Handle Rotation
             this.onlineController.m_MyRotationAxis = SimpleDemos.TransformObjectViaLocalSpace_Example.RotationAxis.custom;
