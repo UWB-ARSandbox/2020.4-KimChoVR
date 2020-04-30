@@ -138,6 +138,11 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!this.GetComponent<ASL.ASLObject>().m_Mine)
+        {
+            return;
+        }
+
         handleFloorCollision(collision);
         handleBallCollision(collision);
     }
