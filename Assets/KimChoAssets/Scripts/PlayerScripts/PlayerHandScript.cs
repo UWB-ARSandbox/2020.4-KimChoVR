@@ -37,6 +37,16 @@ public class PlayerHandScript : MonoBehaviour
             return;
         }
 
+        if (grabbedObject.GetComponent<ASL.ASLObject>() != null)
+        {
+            if (!grabbedObject.GetComponent<ASL.ASLObject>().m_Mine)
+            {
+                selectedObject = null;
+                grabbedObject = null;
+                return;
+            }
+        }
+
         if (grabbedObject.GetComponent<ObjectController>() != null)
         {
             grabbedObject.transform.position = this.transform.position;

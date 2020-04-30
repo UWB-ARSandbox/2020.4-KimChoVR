@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6502288161776079623}
   - component: {fileID: 6502288161776079646}
   - component: {fileID: 5593350063924114548}
+  - component: {fileID: 2366729165137980541}
   m_Layer: 0
   m_Name: PingPongBallPrefab
   m_TagString: Grabbable
@@ -66,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 165c00e6a6441ba4c928870ca72b6395, type: 2}
+  - {fileID: 2100000, guid: bd0bb729cb6159b4ab21c5f62cad24ee, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,6 +152,7 @@ MonoBehaviour:
   m_SendFloat: 0
   m_MyFloats:
   - 0
+  function: 0
 --- !u!114 &6502288161776079623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,3 +204,19 @@ MonoBehaviour:
   m_MyObjectToDelete: {fileID: 6502288161776079625}
   m_Delete: 0
   m_Reset: 0
+--- !u!114 &2366729165137980541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6502288161776079625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c3a31f5f7e6204abce3904bffa79d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MyObjectToColor: {fileID: 6502288161776079625}
+  m_MyColor: {r: 1, g: 1, b: 1, a: 0}
+  m_OpponentsColor: {r: 1, g: 1, b: 1, a: 0}
+  m_SendColor: 0

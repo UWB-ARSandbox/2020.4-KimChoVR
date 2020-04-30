@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -6864173193783355172}
   - component: {fileID: 1228167836131811681}
   - component: {fileID: -303865857882212034}
+  - component: {fileID: 7003095009599530440}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: PlayerBody
@@ -197,3 +198,19 @@ MonoBehaviour:
   m_Angle: 0
   m_ScaleToAmount: {x: 0, y: 0, z: 0}
   m_AdditiveScaleAmount: {x: 0, y: 0, z: 0}
+--- !u!114 &7003095009599530440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626561256972564865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c3a31f5f7e6204abce3904bffa79d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MyObjectToColor: {fileID: 626561256972564865}
+  m_MyColor: {r: 1, g: 1, b: 1, a: 0}
+  m_OpponentsColor: {r: 1, g: 1, b: 1, a: 0}
+  m_SendColor: 0

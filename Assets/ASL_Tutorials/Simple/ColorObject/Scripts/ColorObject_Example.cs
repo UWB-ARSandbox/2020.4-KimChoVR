@@ -24,8 +24,10 @@ namespace SimpleDemos
         /// </summary>
         private void Start()
         {
-            m_MyColor = Color.white;
-            m_OpponentsColor = Color.white;
+            Color newColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+            m_MyColor = newColor;
+            m_OpponentsColor = newColor;
+            m_SendColor = true;
         }
 
         /*For more examples go to https://uwb-arsandbox.github.io/ASL/ASLDocumentation/Help/html/fc89a4a7-90ab-c4bb-6faa-0290adc58274.htm */
