@@ -160,6 +160,11 @@ public class PlayerControllerScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Grabbable" && collision.gameObject.name == "PingPongBallPrefab(Clone)")
         {
+            if (collision.gameObject.GetComponent<ASL.ASLObject>().m_Mine)
+            {
+                return;
+            }
+
             Color otherColor = collision.gameObject.GetComponent<SimpleDemos.ColorObject_Example>().m_MyColor;
             colorScript.m_MyColor = otherColor;
             colorScript.m_OpponentsColor = otherColor;
