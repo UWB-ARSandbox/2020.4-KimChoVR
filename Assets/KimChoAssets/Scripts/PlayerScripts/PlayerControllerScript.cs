@@ -11,6 +11,7 @@ public class PlayerControllerScript : MonoBehaviour
 
     public Vector3 offSet;
 
+    public SimpleDemos.ColorObject_Example colorScript;
     public SimpleDemos.TransformObjectViaLocalSpace_Example onlineController;
     public PlayerStatsScript playerStats;
 
@@ -24,6 +25,7 @@ public class PlayerControllerScript : MonoBehaviour
     {
         playerView = GameObject.FindGameObjectWithTag("MainCamera");
         playSpace = GameObject.FindGameObjectWithTag("Player");
+        colorScript = this.GetComponent<SimpleDemos.ColorObject_Example>();
         onlineController = this.GetComponent<SimpleDemos.TransformObjectViaLocalSpace_Example>();
         playerStats = this.GetComponent<PlayerStatsScript>();
 
@@ -136,10 +138,11 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        handleOnlinePlayerCollisions(collision);
+        handleFloorCollision(collision);
+        handleBallCollision(collision);
     }
 
-    private void handleOnlinePlayerCollisions(Collision collision)
+    private void handleFloorCollision(Collision collision)
     {
         if (playerStats != null)
         {
@@ -151,6 +154,18 @@ public class PlayerControllerScript : MonoBehaviour
         }
 
         playerStats.floatScript.m_SendFloat = true;
+    }
+
+    private void handleBallCollision(Collision collision)
+    {
+        if (collision.gameObject.tag == "Grabbable" && collision.gameObject.name == "PingPongBallPrefab(Clone)")
+        {
+            Color otherColor = collision.gameObject.GetComponent<SimpleDemos.ColorObject_Example>().m_MyColor;
+            colorScript.m_MyColor = otherColor;
+            colorScript.m_OpponentsColor = otherColor;
+            colorScript.m_SendColor = true;
+            collision.gameObject.GetComponent<SimpleDemos.DeleteObject_Example>().m_Delete = true;
+        }
     }
 
     public void ClaimMe()

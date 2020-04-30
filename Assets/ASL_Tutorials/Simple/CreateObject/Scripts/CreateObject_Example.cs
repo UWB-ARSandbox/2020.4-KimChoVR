@@ -102,7 +102,7 @@ namespace SimpleDemos
             //Change the color
             _myGameObject.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
             {
-                _myGameObject.GetComponent<ASL.ASLObject>().SendAndSetObjectColor(new Color(0.7830189f, 0.3792925f, 03324135f, 1), new Color(0, 0, 0));
+                //_myGameObject.GetComponent<ASL.ASLObject>().SendAndSetObjectColor(new Color(0.7830189f, 0.3792925f, 03324135f, 1), new Color(0, 0, 0));
             });
         }
 
