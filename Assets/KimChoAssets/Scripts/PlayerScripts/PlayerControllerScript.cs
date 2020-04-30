@@ -70,9 +70,10 @@ public class PlayerControllerScript : MonoBehaviour
         //Vector3 playSpaceOffset = playerView.transform.position - playSpace.transform.position;
         //float rotateAmount = Input.GetAxis("AXIS_19") * playerStats.floatScript.m_MyFloats[3];
         Vector3 additativeAmount = new Vector3(playerView.transform.forward.x, 0, playerView.transform.forward.z) * -Input.GetAxis("AXIS_18") * playerStats.floatScript.m_MyFloats[2] * Time.fixedDeltaTime;
+        Vector3 leftRightAmount = new Vector3(playerView.transform.right.x, 0, playerView.transform.right.z) * Input.GetAxis("AXIS_17") * playerStats.floatScript.m_MyFloats[2] * Time.fixedDeltaTime;
 
         // Handle Online Positioning
-        onlineController.m_AdditiveMovementAmount = additativeAmount;
+        onlineController.m_AdditiveMovementAmount = additativeAmount + leftRightAmount;
         onlineController.m_MyRotationAxis = SimpleDemos.TransformObjectViaLocalSpace_Example.RotationAxis.y;
         //onlineController.m_Angle = rotateAmount;
         onlineController.m_SendAdditiveTransform = true;
