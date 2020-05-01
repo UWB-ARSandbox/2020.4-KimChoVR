@@ -174,6 +174,7 @@ public class PlayerControllerScript : MonoBehaviour
             colorScript.m_MyColor = otherColor;
             colorScript.m_OpponentsColor = otherColor;
             colorScript.m_SendColor = true;
+            Destroy(collision.gameObject.GetComponent<ObjectController>().objectToSyncWith);
             collision.gameObject.GetComponent<SimpleDemos.DeleteObject_Example>().m_Delete = true;
         }
     }
