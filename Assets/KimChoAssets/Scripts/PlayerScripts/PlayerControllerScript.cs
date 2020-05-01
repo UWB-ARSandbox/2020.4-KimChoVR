@@ -83,7 +83,7 @@ public class PlayerControllerScript : MonoBehaviour
         //playSpace.transform.rotation = this.transform.rotation;
         playSpace.transform.position = this.transform.position - playSpaceOffset + new Vector3(0, 0.7f, 0);
 
-        if (timer >= 5)
+        if (timer >= 2)
         {
             // Handle Position
             this.onlineController.m_MoveToPosition = this.transform.position;
