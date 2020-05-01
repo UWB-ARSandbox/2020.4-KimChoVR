@@ -136,4 +136,9 @@ public class ObjectController : MonoBehaviour
         this.transform.position = objectToSyncWith.transform.position;
         this.transform.rotation = objectToSyncWith.transform.rotation;
     }
+
+    private void OnDestroy()
+    {
+        objectToSyncWith.GetComponent<SimpleDemos.DeleteObject_Example>().m_Delete = true;
+    }
 }

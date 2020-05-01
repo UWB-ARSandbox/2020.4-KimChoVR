@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2161978293522058579}
   - component: {fileID: 7382535805131607073}
+  - component: {fileID: 561119468862709571}
   m_Layer: 0
   m_Name: ASLSyncObject
   m_TagString: ASLObject
@@ -43,4 +44,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ba9c1281dde1046a12e93d41291166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ASLObjectToSpawn: {fileID: 0}
+--- !u!114 &561119468862709571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4824126673856139431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce4801fd9fc8fe44b906d22834bf392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MyObjectToDelete: {fileID: 4824126673856139431}
+  m_Delete: 0
+  m_Reset: 0

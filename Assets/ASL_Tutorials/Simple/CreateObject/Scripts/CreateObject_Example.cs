@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace SimpleDemos
@@ -55,14 +56,14 @@ namespace SimpleDemos
                 if (m_CreateObject == ObjectToCreate.PingPongBall)
                 {
                     ASL.ASLHelper.InstanitateASLObject("PingPongBallPrefab",
-                        new Vector3(1, 1, 1), Quaternion.identity, "InteractiveContainer", "",
-                        ClaimObjectUponCreation,
+                        this.transform.position, Quaternion.identity, "InteractiveContainer", "",
+                        RepositionObject,
                         ClaimRecoveryFunction,
                         null);
 
                     ASL.ASLHelper.InstanitateASLObject("ASLSyncObject",
-                        new Vector3(1, 1, 1), Quaternion.identity, "InteractiveContainer", "",
-                        ClaimObjectUponCreation,
+                        this.transform.position, Quaternion.identity, "InteractiveContainer", "",
+                        RepositionObject,
                         ClaimRecoveryFunction,
                         null);
                 }
@@ -91,6 +92,14 @@ namespace SimpleDemos
                     CreateAndAddObjectToList,
                     ClaimRecoveryFunction,
                     null);
+        }
+
+        public static void RepositionObject(GameObject _myGameObject)
+        {
+            _myGameObject.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
+            {
+
+            });
         }
 
         /// <summary>

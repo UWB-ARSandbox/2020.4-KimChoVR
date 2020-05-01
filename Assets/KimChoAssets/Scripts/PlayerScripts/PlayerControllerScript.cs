@@ -163,6 +163,7 @@ public class PlayerControllerScript : MonoBehaviour
 
     private void handleBallCollision(Collision collision)
     {
+        /*
         if (collision.gameObject.tag == "Grabbable" && collision.gameObject.name == "PingPongBallPrefab(Clone)")
         {
             if (collision.gameObject.GetComponent<ASL.ASLObject>().m_Mine)
@@ -177,6 +178,7 @@ public class PlayerControllerScript : MonoBehaviour
             Destroy(collision.gameObject.GetComponent<ObjectController>().objectToSyncWith);
             collision.gameObject.GetComponent<SimpleDemos.DeleteObject_Example>().m_Delete = true;
         }
+        */
     }
 
     public void ClaimMe()
