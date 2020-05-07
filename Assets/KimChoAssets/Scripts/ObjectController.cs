@@ -47,8 +47,8 @@ public class ObjectController : MonoBehaviour
                 Debug.Log("Successfully claimed object! " + this.gameObject.name);
             });
 
-            Debug.Log(this.objectToSyncWith.GetComponent<ASL.ASLObject>().m_Id);
-            Debug.Log(this.gameObject.GetComponent<ASL.ASLObject>().m_Id);
+            //Debug.Log(this.objectToSyncWith.GetComponent<ASL.ASLObject>().m_Id);
+            //Debug.Log(this.gameObject.GetComponent<ASL.ASLObject>().m_Id);
 
             // Handle Position
             this.ASLTransformScript.m_MoveToPosition = this.transform.position;

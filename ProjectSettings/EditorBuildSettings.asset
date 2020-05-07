@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/ASL/ASL_Scenes/ASL_SceneLoader.unity
     guid: 6026d53651e499849a1420efc6833ec7
   - enabled: 1
+    path: Assets/KimChoAssets/Scenes/SandBoxScene.unity
+    guid: 7aa3f4ec1778cfe4190070f461f23508
+  - enabled: 1
     path: Assets/KimChoAssets/Scenes/CupPongScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1

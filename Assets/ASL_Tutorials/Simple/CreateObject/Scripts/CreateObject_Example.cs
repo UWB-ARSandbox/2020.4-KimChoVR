@@ -18,7 +18,8 @@ namespace SimpleDemos
             PlayerBody,
             GizmoLeft,
             GizmoRight,
-            PingPongBall
+            PingPongBall,
+            ColorBall
         }
 
         /// <summary>The object type that will be created</summary>
