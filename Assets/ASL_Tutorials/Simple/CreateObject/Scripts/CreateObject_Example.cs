@@ -13,6 +13,7 @@ namespace SimpleDemos
         /// See documentation for all variations
         /// </summary>
 
+        public static int GrabbableItemStartIndex = 4;
         public static int UniqueObjectsCount = 18;
         public static string[] itemNameList = {
             "Cube_PlayerHead",

@@ -54,15 +54,15 @@ public class InventoryScript : MonoBehaviour
     {
         string itemID = EventSystem.current.currentSelectedGameObject.GetComponent<ItemSlotIdentifier>().itemID;
 
-        if (itemID == StaticItemList.itemIconList[0])
+        for (int i = 0; i < StaticItemList.itemIconList.Length; i++)
         {
-            createScript.m_CreateObject = SimpleDemos.CreateObject_Example.ObjectToCreate.PingPongBall;
-            createScript.m_SpawnObject = true;
-        } else if (itemID == StaticItemList.itemIconList[1])
-        {
-            createScript.m_CreateObject = SimpleDemos.CreateObject_Example.ObjectToCreate.ColorBall;
-            createScript.m_SpawnObject = true;
+            if (itemID == StaticItemList.itemIconList[i])
+            {
+                createScript.m_CreateObject = (SimpleDemos.CreateObject_Example.ObjectToCreate) i + SimpleDemos.CreateObject_Example.GrabbableItemStartIndex;
+                createScript.m_SpawnObject = true;
+            }
         }
+
         Destroy(EventSystem.current.currentSelectedGameObject);
     }
 }

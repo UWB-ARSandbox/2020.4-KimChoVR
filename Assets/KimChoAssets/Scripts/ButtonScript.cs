@@ -20,7 +20,6 @@ public class ButtonScript : MonoBehaviour
     {
         int randomNumber = Random.Range(6, SimpleDemos.CreateObject_Example.UniqueObjectsCount);
         createObjectScript.m_CreateObject = (SimpleDemos.CreateObject_Example.ObjectToCreate) randomNumber;
-        Debug.Log("TESTING: " + createObjectScript.m_CreateObject);
         createObjectScript.m_SpawnObject = true;
     }
 }
