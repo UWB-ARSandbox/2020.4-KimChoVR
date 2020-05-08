@@ -67,6 +67,19 @@ namespace SimpleDemos
                         RepositionObject,
                         ClaimRecoveryFunction,
                         null);
+                } else if (m_CreateObject == ObjectToCreate.ColorBall)
+                {
+                    ASL.ASLHelper.InstanitateASLObject("ColorBallPrefab",
+                        this.transform.position, Quaternion.identity, "InteractiveContainer", "",
+                        ClaimObjectUponCreation,
+                        ClaimRecoveryFunction,
+                        null);
+
+                    ASL.ASLHelper.InstanitateASLObject("ASLSyncObject",
+                        this.transform.position, Quaternion.identity, "InteractiveContainer", "",
+                        ClaimObjectUponCreation,
+                        ClaimRecoveryFunction,
+                        null);
                 }
             }
         }

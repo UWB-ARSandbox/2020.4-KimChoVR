@@ -5,8 +5,8 @@ using UnityEngine;
 public static class StaticItemList
 {
     public static string[] itemList = {
-        "PingPongBallPrefab",
-        "ColorBallPrefab"
+        "PingPongBallPrefab(Clone)",
+        "ColorBallPrefab(Clone)"
     };
 
     public static string[] itemIconList =

@@ -58,7 +58,7 @@ public class PlayerControllerScript : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.JoystickButton6) || Input.GetKeyDown(KeyCode.JoystickButton7))
+        if (Input.GetKeyDown(KeyCode.JoystickButton7))
         {
             playSpaceOffset = playerView.transform.position - playSpace.transform.position;
         }

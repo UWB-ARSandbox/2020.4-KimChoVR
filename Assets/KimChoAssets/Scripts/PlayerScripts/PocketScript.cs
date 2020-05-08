@@ -25,8 +25,6 @@ public class PocketScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("TOUCH: " + other.gameObject.name);
-
         for (int i = 0; i < StaticItemList.itemList.Length; i++)
         {
             if (other.gameObject.name == StaticItemList.itemList[i] ||
@@ -38,10 +36,5 @@ public class PocketScript : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        Debug.Log("ASSSSSSSSSSSSSSSSSSSS");
     }
 }
