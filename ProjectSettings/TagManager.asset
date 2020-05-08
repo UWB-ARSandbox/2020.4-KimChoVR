@@ -15,6 +15,7 @@ TagManager:
   - PlayerStats
   - Pocket
   - InventoryObject
+  - PlayerHead
   layers:
   - Default
   - TransparentFX

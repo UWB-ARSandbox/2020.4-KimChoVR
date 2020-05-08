@@ -13,13 +13,14 @@ namespace SimpleDemos
         /// See documentation for all variations
         /// </summary>
 
-        public static int GrabbableItemStartIndex = 4;
-        public static int UniqueObjectsCount = 18;
+        public static int GrabbableItemStartIndex = 5;
+        public static int UniqueObjectsCount = 19;
         public static string[] itemNameList = {
             "Cube_PlayerHead",
             "PlayerBody",
             "GizmoLeft",
             "GizmoRight",
+            "PlayerInfoObject",
             "PingPongBallPrefab",
             "ColorBallPrefab",
             "Branch_01",
@@ -42,6 +43,7 @@ namespace SimpleDemos
             PlayerBody,
             GizmoLeft,
             GizmoRight,
+            PlayerInfoObject,
             PingPongBall,
             ColorBall,
             // SandBox Objects
@@ -129,6 +131,11 @@ namespace SimpleDemos
                     ClaimRecoveryFunction,
                     null);
             ASL.ASLHelper.InstanitateASLObject("GizmoRight",
+                    new Vector3(Random.Range(-2f, 2f), Random.Range(0f, 2f), Random.Range(-2f, 2f)), Quaternion.identity, "", "",
+                    CreateAndAddObjectToList,
+                    ClaimRecoveryFunction,
+                    null);
+            ASL.ASLHelper.InstanitateASLObject("PlayerInfoObject",
                     new Vector3(Random.Range(-2f, 2f), Random.Range(0f, 2f), Random.Range(-2f, 2f)), Quaternion.identity, "", "",
                     CreateAndAddObjectToList,
                     ClaimRecoveryFunction,
