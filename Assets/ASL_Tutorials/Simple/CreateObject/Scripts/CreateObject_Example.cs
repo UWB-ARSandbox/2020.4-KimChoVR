@@ -12,6 +12,29 @@ namespace SimpleDemos
         /// Different objects you can create in this tutorial. Not all variations are listed here.
         /// See documentation for all variations
         /// </summary>
+
+        public static int UniqueObjectsCount = 18;
+        public static string[] itemNameList = {
+            "Cube_PlayerHead",
+            "PlayerBody",
+            "GizmoLeft",
+            "GizmoRight",
+            "PingPongBallPrefab",
+            "ColorBallPrefab",
+            "Branch_01",
+            "Bush_01",
+            "Bush_02",
+            "Mushroom_01",
+            "Mushroom_02",
+            "Rock_01",
+            "Rock_02",
+            "Rock_03",
+            "Rock_04",
+            "Stump_01",
+            "Tree_01",
+            "Tree_02"
+        };
+
         public enum ObjectToCreate
         {
             CubePlayerHead,
@@ -19,7 +42,20 @@ namespace SimpleDemos
             GizmoLeft,
             GizmoRight,
             PingPongBall,
-            ColorBall
+            ColorBall,
+            // SandBox Objects
+            Branch_01,
+            Bush_01,
+            Bush_02,
+            Mushroom_01,
+            Mushroom_02,
+            Rock_01,
+            Rock_02,
+            Rock_03,
+            Rock_04,
+            Stump_01,
+            Tree_01,
+            Tree_02
         }
 
         /// <summary>The object type that will be created</summary>
@@ -54,34 +90,24 @@ namespace SimpleDemos
             if (m_SpawnObject)
             {
                 m_SpawnObject = false; //Reset to false to prevent multiple unwanted spawns
-                if (m_CreateObject == ObjectToCreate.PingPongBall)
-                {
-                    ASL.ASLHelper.InstanitateASLObject("PingPongBallPrefab",
-                        this.transform.position, Quaternion.identity, "InteractiveContainer", "",
-                        RepositionObject,
-                        ClaimRecoveryFunction,
-                        null);
-
-                    ASL.ASLHelper.InstanitateASLObject("ASLSyncObject",
-                        this.transform.position, Quaternion.identity, "InteractiveContainer", "",
-                        RepositionObject,
-                        ClaimRecoveryFunction,
-                        null);
-                } else if (m_CreateObject == ObjectToCreate.ColorBall)
-                {
-                    ASL.ASLHelper.InstanitateASLObject("ColorBallPrefab",
-                        this.transform.position, Quaternion.identity, "InteractiveContainer", "",
-                        ClaimObjectUponCreation,
-                        ClaimRecoveryFunction,
-                        null);
-
-                    ASL.ASLHelper.InstanitateASLObject("ASLSyncObject",
-                        this.transform.position, Quaternion.identity, "InteractiveContainer", "",
-                        ClaimObjectUponCreation,
-                        ClaimRecoveryFunction,
-                        null);
-                }
+                CreateGrabbableObjects(m_CreateObject);
             }
+        }
+
+        private void CreateGrabbableObjects(ObjectToCreate objEnum)
+        {
+            string objName = itemNameList[(int) objEnum];
+
+            ASL.ASLHelper.InstanitateASLObject(objName,
+                        this.transform.position, Quaternion.identity, "InteractiveContainer", "",
+                        RepositionObject,
+                        ClaimRecoveryFunction,
+                        null);
+            ASL.ASLHelper.InstanitateASLObject("ASLSyncObject",
+                this.transform.position, Quaternion.identity, "InteractiveContainer", "",
+                RepositionObject,
+                ClaimRecoveryFunction,
+                null);
         }
 
         public void CreatePlayerAvatars()

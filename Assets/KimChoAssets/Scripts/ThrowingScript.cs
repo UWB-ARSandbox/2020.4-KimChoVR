@@ -11,6 +11,8 @@ public class ThrowingScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = this.GetComponent<Rigidbody>();
+
         timer = 0.0f;
         prevPosition = rb.position;
     }
