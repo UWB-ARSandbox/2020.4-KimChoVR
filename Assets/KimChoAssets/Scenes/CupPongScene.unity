@@ -598,7 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e95a2006f31ccc4a936f656afbcca56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CreateObject: 4
+  m_CreateObject: 5
   m_SpawnObject: 0
   m_SpawnAvatar: 0
 --- !u!114 &342047686
@@ -2253,7 +2253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e95a2006f31ccc4a936f656afbcca56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CreateObject: 4
+  m_CreateObject: 5
   m_SpawnObject: 0
   m_SpawnAvatar: 0
 --- !u!1001 &946271172

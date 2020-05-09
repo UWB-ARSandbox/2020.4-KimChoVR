@@ -26,15 +26,18 @@ public class PlayerInfoScript : MonoBehaviour
             return;
         }
 
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("PlayerHead"))
+        if (objectToSyncWith == null)
         {
-            if (obj.GetComponent<ASL.ASLObject>() != null)
-            {
-                if (obj.GetComponent<ASL.ASLObject>().m_Mine)
+            foreach(GameObject obj in GameObject.FindGameObjectsWithTag("PlayerHead")) {
+                if (obj.GetComponent<ASL.ASLObject>() != null)
                 {
-                    objectToSyncWith = obj;
+                    if (obj.GetComponent<ASL.ASLObject>().m_Mine)
+                    {
+                        objectToSyncWith = obj;
+                    }
                 }
             }
+            return;
         }
 
         this.transform.position = objectToSyncWith.transform.position + new Vector3(0, 0.5f, 0);
