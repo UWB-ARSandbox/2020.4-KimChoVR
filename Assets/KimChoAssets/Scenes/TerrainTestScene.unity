@@ -157,10 +157,12 @@ MonoBehaviour:
   - {fileID: 6331777922910719025, guid: 592a1292eecf34ed6a6b7f327dea92e1, type: 3}
   - {fileID: 1408744794895037144, guid: 255bfcacc23b4428597acad41db4221f, type: 3}
   generatedBlocks: []
-  amp: 5
+  amp: 4
   freq: 5
-  rows: 20
-  cols: 20
+  rows: 10
+  cols: 10
+  scaleFactor: {x: 0.1, y: 0.1, z: 0.1}
+  limitFactor: 50
   generateTerrain: 0
 --- !u!4 &19407606
 Transform:

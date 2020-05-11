@@ -15,6 +15,8 @@ public class PlayerControllerScript : MonoBehaviour
     public SimpleDemos.TransformObjectViaLocalSpace_Example onlineController;
     public PlayerStatsScript playerStats;
 
+    public bool useKeyboard = false;
+
     private bool jumped;
     private float timer;
 
@@ -48,6 +50,7 @@ public class PlayerControllerScript : MonoBehaviour
         timer += Time.fixedDeltaTime;
 
         handleMovementInput();
+        keyboardMovement();
     }
 
     void Update()
@@ -64,6 +67,19 @@ public class PlayerControllerScript : MonoBehaviour
         }
 
         handleJumpInput();
+        keyboardMovement();
+    }
+
+    private void keyboardMovement()
+    {
+        Vector3 additativeAmount = new Vector3(playerView.transform.forward.x, 0, playerView.transform.forward.z) * Input.GetAxis("Vertical") * playerStats.floatScript.m_MyFloats[2] * Time.fixedDeltaTime;
+        Vector3 leftRightAmount = new Vector3(playerView.transform.right.x, 0, playerView.transform.right.z) * Input.GetAxis("Horizontal") * playerStats.floatScript.m_MyFloats[2] * Time.fixedDeltaTime;
+
+        onlineController.m_AdditiveMovementAmount = additativeAmount + leftRightAmount;
+        onlineController.m_MyRotationAxis = SimpleDemos.TransformObjectViaLocalSpace_Example.RotationAxis.y;
+        onlineController.m_SendAdditiveTransform = true;
+
+        playSpace.transform.position = this.transform.position - playSpaceOffset + new Vector3(0, 0.7f, 0);
     }
 
     private void handleMovementInput()
@@ -127,7 +143,9 @@ public class PlayerControllerScript : MonoBehaviour
             jumped = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.JoystickButton8) && !jumped || Input.GetKeyDown(KeyCode.JoystickButton9) && !jumped)
+        if (Input.GetKeyDown(KeyCode.JoystickButton8) && !jumped ||
+            Input.GetKeyDown(KeyCode.JoystickButton9) && !jumped ||
+            Input.GetKeyDown(KeyCode.Space))
         {
             playerStats.floatScript.m_MyFloats[0] = 1.0f;
             jumped = true;

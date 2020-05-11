@@ -116,7 +116,7 @@ namespace SimpleDemos
         public void CreatePlayerAvatars()
         {
             ASL.ASLHelper.InstanitateASLObject("PlayerBody",
-                    new Vector3(Random.Range(-5f, 5f), Random.Range(5f, 5f), Random.Range(-5f, 5f)), Quaternion.identity, "", "",
+                    new Vector3(0, 10f, 0), Quaternion.identity, "", "",
                     CreateAndAddObjectToList,
                     ClaimRecoveryFunction,
                     null);

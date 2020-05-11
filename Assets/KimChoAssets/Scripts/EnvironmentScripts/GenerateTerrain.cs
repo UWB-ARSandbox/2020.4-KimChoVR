@@ -13,6 +13,8 @@ public class GenerateTerrain : MonoBehaviour
     public int rows = 20;
     public int cols = 20;
 
+    public int limitFactor = 50;
+
     public bool generateTerrain = false;
 
     // Start is called before the first frame update
@@ -32,19 +34,26 @@ public class GenerateTerrain : MonoBehaviour
         }
     }
 
+    // Limit values to prevent crashes
     void limitValues()
     {
-        if (rows > 100)
+        if (rows > limitFactor)
         {
-            rows = 100;
+            rows = limitFactor;
         }
 
-        if (cols > 100)
+        if (cols > limitFactor)
         {
-            cols = 100;
+            cols = limitFactor;
+        }
+
+        if (amp > limitFactor)
+        {
+            amp = limitFactor;
         }
     }
 
+    // Delete All Blocks That Were Generated
     void deleteTerrain()
     {
         foreach (GameObject block in generatedBlocks)
@@ -55,13 +64,14 @@ public class GenerateTerrain : MonoBehaviour
         generatedBlocks.Clear();
     }
 
+    // Generate a New Terrain
     void generateNewTerrain()
     {
         limitValues();
 
-        for (int x = 0; x < rows; x++)
+        for (int x = -rows; x < rows; x++)
         {
-            for (int z = 0; z < cols; z++)
+            for (int z = -cols; z < cols; z++)
             {
                 int y = Mathf.FloorToInt(Mathf.PerlinNoise(x / (freq * 1.0f), z / (freq * 1.0f)) * (amp * 1.0f));
 
@@ -71,7 +81,13 @@ public class GenerateTerrain : MonoBehaviour
                 }
 
                 GameObject newBlock = Instantiate(blockTypes[2], this.transform);
-                newBlock.transform.position = new Vector3(x, y, z);
+                newBlock.transform.position = new Vector3(x * BlockStaticScript.blockScaleX,
+                    y * BlockStaticScript.blockScaleY,
+                    z * BlockStaticScript.blockScaleZ);
+
+                newBlock.transform.localScale = new Vector3(BlockStaticScript.blockScaleX,
+                    BlockStaticScript.blockScaleY,
+                    BlockStaticScript.blockScaleZ);
 
                 generatedBlocks.Add(newBlock);
 
@@ -80,6 +96,7 @@ public class GenerateTerrain : MonoBehaviour
         }
     }
 
+    // Fills in blocks under the upper layered blocks
     void fillUnderTerrain(int x, int y, int z, int blockType)
     {
 
@@ -95,7 +112,13 @@ public class GenerateTerrain : MonoBehaviour
                 newBlock = Instantiate(blockTypes[blockType], this.transform);
             }
 
-            newBlock.transform.position = new Vector3(x, y, z);
+            newBlock.transform.position = new Vector3(x * BlockStaticScript.blockScaleX,
+                    y * BlockStaticScript.blockScaleY,
+                    z * BlockStaticScript.blockScaleZ);
+
+            newBlock.transform.localScale = new Vector3(BlockStaticScript.blockScaleX,
+                BlockStaticScript.blockScaleY,
+                BlockStaticScript.blockScaleZ);
 
             generatedBlocks.Add(newBlock);
         }
