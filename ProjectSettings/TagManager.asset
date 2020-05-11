@@ -16,6 +16,7 @@ TagManager:
   - Pocket
   - InventoryObject
   - PlayerHead
+  - Block
   layers:
   - Default
   - TransparentFX

@@ -13,14 +13,9 @@ namespace SimpleDemos
         /// See documentation for all variations
         /// </summary>
 
-        public static int GrabbableItemStartIndex = 5;
-        public static int UniqueObjectsCount = 19;
+        //public static int GrabbableItemStartIndex = 5;
+        public static int UniqueObjectsCount = 14;
         public static string[] itemNameList = {
-            "Cube_PlayerHead",
-            "PlayerBody",
-            "GizmoLeft",
-            "GizmoRight",
-            "PlayerInfoObject",
             "PingPongBallPrefab",
             "ColorBallPrefab",
             "Branch_01",
@@ -37,16 +32,24 @@ namespace SimpleDemos
             "Tree_02"
         };
 
+        public static string[] blockList =
+        {
+            "BedRock",
+            "Dirt",
+            "Grass"
+        };
+
+        public enum BlockToCreate
+        {
+            BedRock,
+            Dirt,
+            Grass
+        }
+
         public enum ObjectToCreate
         {
-            CubePlayerHead,
-            PlayerBody,
-            GizmoLeft,
-            GizmoRight,
-            PlayerInfoObject,
             PingPongBall,
             ColorBall,
-            // SandBox Objects
             Branch_01,
             Bush_01,
             Bush_02,
@@ -61,12 +64,17 @@ namespace SimpleDemos
             Tree_02
         }
 
+        /// <summary>Vector3 to place object / block</summary>
+        public Vector3 objectPlacement;
+
         /// <summary>The object type that will be created</summary>
         public ObjectToCreate m_CreateObject;
+        public BlockToCreate m_Block;
 
         /// <summary> Toggle for creating an object</summary>
         public bool m_SpawnObject = false;
         public bool m_SpawnAvatar = false;
+        public bool m_CreateBlock = false;
 
         /// <summary> Handle to the latest Full Prefab object created</summary>
         public static List<GameObject> m_HandleToFreshObjects = new List<GameObject>();
@@ -95,13 +103,34 @@ namespace SimpleDemos
                 m_SpawnObject = false; //Reset to false to prevent multiple unwanted spawns
                 CreateGrabbableObjects(m_CreateObject);
             }
+
+            if (m_CreateBlock)
+            {
+                CreateBlockObject(m_Block);
+            }
+        }
+
+        private void CreateBlockObject(BlockToCreate blockEnum)
+        {
+            string blockName = blockList[(int)blockEnum];
+
+            ASL.ASLHelper.InstanitateASLObject("BlockPrefabs/" + blockName,
+                        objectPlacement, Quaternion.identity, "Environment", "",
+                        RepositionObject,
+                        ClaimRecoveryFunction,
+                        null);
+            ASL.ASLHelper.InstanitateASLObject("ASLSyncObject",
+                objectPlacement, Quaternion.identity, "Environment", "",
+                RepositionObject,
+                ClaimRecoveryFunction,
+                null);
         }
 
         private void CreateGrabbableObjects(ObjectToCreate objEnum)
         {
             string objName = itemNameList[(int) objEnum];
 
-            ASL.ASLHelper.InstanitateASLObject(objName,
+            ASL.ASLHelper.InstanitateASLObject("Grabbables/" + objName,
                         this.transform.position, Quaternion.identity, "InteractiveContainer", "",
                         RepositionObject,
                         ClaimRecoveryFunction,
@@ -146,7 +175,6 @@ namespace SimpleDemos
         {
             _myGameObject.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
             {
-
             });
         }
 

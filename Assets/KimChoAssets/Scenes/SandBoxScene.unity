@@ -308,9 +308,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e95a2006f31ccc4a936f656afbcca56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPlacement: {x: 0, y: 0, z: 0}
   m_CreateObject: 4
+  m_Block: 0
   m_SpawnObject: 0
   m_SpawnAvatar: 0
+  m_CreateBlock: 0
 --- !u!1 &390214067
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,7 +459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4441371295092974, guid: 0f83fa6afa56ead46bbd762156f1137e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 4441371295092974, guid: 0f83fa6afa56ead46bbd762156f1137e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -565,9 +568,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e95a2006f31ccc4a936f656afbcca56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPlacement: {x: 0, y: 0, z: 0}
   m_CreateObject: 5
+  m_Block: 0
   m_SpawnObject: 0
   m_SpawnAvatar: 0
+  m_CreateBlock: 0
 --- !u!114 &583332059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,7 +608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4441371295092974, guid: 0f83fa6afa56ead46bbd762156f1137e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 4441371295092974, guid: 0f83fa6afa56ead46bbd762156f1137e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -723,9 +729,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e95a2006f31ccc4a936f656afbcca56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPlacement: {x: 0, y: 0, z: 0}
   m_CreateObject: 5
+  m_Block: 0
   m_SpawnObject: 0
   m_SpawnAvatar: 0
+  m_CreateBlock: 0
 --- !u!4 &588377914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4441371295092974, guid: 0f83fa6afa56ead46bbd762156f1137e, type: 3}
@@ -748,7 +757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4441371295092974, guid: 0f83fa6afa56ead46bbd762156f1137e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 4441371295092974, guid: 0f83fa6afa56ead46bbd762156f1137e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -857,9 +866,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e95a2006f31ccc4a936f656afbcca56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPlacement: {x: 0, y: 0, z: 0}
   m_CreateObject: 4
+  m_Block: 0
   m_SpawnObject: 0
   m_SpawnAvatar: 0
+  m_CreateBlock: 0
 --- !u!114 &649695457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1492,7 +1504,8 @@ MonoBehaviour:
   generatedBlocks: []
   amp: 5
   freq: 5
-  rows: 10
-  cols: 10
+  rows: 20
+  cols: 20
+  yOffset: -10
   limitFactor: 50
   generateTerrain: 0

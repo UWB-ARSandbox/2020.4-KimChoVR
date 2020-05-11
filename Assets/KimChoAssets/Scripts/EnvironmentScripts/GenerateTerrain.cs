@@ -13,14 +13,29 @@ public class GenerateTerrain : MonoBehaviour
     public int rows = 20;
     public int cols = 20;
 
+    public int yOffset = -10;
+
     public int limitFactor = 50;
 
     public bool generateTerrain = false;
 
+    public static string[] blockList = {
+        "BedRock",
+        "Dirt",
+        "Grass"
+    };
+
+    public enum BlockToCreate
+    {
+        BedRock,
+        Dirt,
+        Grass
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        generateNewTerrain();
+        generateNewTerrainASL();
     }
 
     // Update is called once per frame
@@ -64,6 +79,61 @@ public class GenerateTerrain : MonoBehaviour
         generatedBlocks.Clear();
     }
 
+    void generateNewTerrainASL()
+    {
+        limitValues();
+
+        for (int x = -rows; x < rows; x++)
+        {
+            for (int z = -cols; z < cols; z++)
+            {
+                int y = Mathf.FloorToInt(Mathf.PerlinNoise(x / (freq * 1.0f), z / (freq * 1.0f)) * (amp * 1.0f));
+
+                if (y < 1)
+                {
+                    y = 1;
+                }
+
+                ASL.ASLHelper.InstanitateASLObject("BlockPrefabs/Grass",
+                            new Vector3(x * BlockStaticScript.blockScaleX,
+                    y * BlockStaticScript.blockScaleY + yOffset,
+                    z * BlockStaticScript.blockScaleZ), Quaternion.identity, "Environment", "",
+                            null,
+                            null,
+                            null);
+                fillUnderTerrainASL(x, y - 1, z, 1);
+            }
+        }
+    }
+
+    void fillUnderTerrainASL(int x, int y, int z, int blockType)
+    {
+
+        for (; y >= 0; y--)
+        {
+            if (y == 0)
+            {
+                ASL.ASLHelper.InstanitateASLObject("BlockPrefabs/BedRock",
+                            new Vector3(x * BlockStaticScript.blockScaleX,
+                    y * BlockStaticScript.blockScaleY + yOffset,
+                    z * BlockStaticScript.blockScaleZ), Quaternion.identity, "Environment", "",
+                            null,
+                            null,
+                            null);
+            }
+            else
+            {
+                ASL.ASLHelper.InstanitateASLObject("BlockPrefabs/Dirt",
+                            new Vector3(x * BlockStaticScript.blockScaleX,
+                    y * BlockStaticScript.blockScaleY + yOffset,
+                    z * BlockStaticScript.blockScaleZ), Quaternion.identity, "Environment", "",
+                            null,
+                            null,
+                            null);
+            }
+        }
+    }
+
     // Generate a New Terrain
     void generateNewTerrain()
     {
@@ -91,7 +161,7 @@ public class GenerateTerrain : MonoBehaviour
 
                 generatedBlocks.Add(newBlock);
 
-                fillUnderTerrain(x, y, z, 1);
+                fillUnderTerrain(x, y - 1, z, 1);
             }
         }
     }
@@ -107,7 +177,8 @@ public class GenerateTerrain : MonoBehaviour
             if (y == 0)
             {
                 newBlock = Instantiate(blockTypes[0], this.transform);
-            } else
+            }
+            else
             {
                 newBlock = Instantiate(blockTypes[blockType], this.transform);
             }

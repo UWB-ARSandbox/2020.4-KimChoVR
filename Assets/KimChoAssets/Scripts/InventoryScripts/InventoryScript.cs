@@ -58,7 +58,7 @@ public class InventoryScript : MonoBehaviour
         {
             if (itemID == StaticItemList.itemIconList[i])
             {
-                createScript.m_CreateObject = (SimpleDemos.CreateObject_Example.ObjectToCreate) i + SimpleDemos.CreateObject_Example.GrabbableItemStartIndex;
+                createScript.m_CreateObject = (SimpleDemos.CreateObject_Example.ObjectToCreate) i;
                 createScript.m_SpawnObject = true;
             }
         }

@@ -18,7 +18,7 @@ public class ButtonScript : MonoBehaviour
 
     public void SpawnRandomObject()
     {
-        int randomNumber = Random.Range(6, SimpleDemos.CreateObject_Example.UniqueObjectsCount);
+        int randomNumber = Random.Range(0, SimpleDemos.CreateObject_Example.UniqueObjectsCount);
         createObjectScript.m_CreateObject = (SimpleDemos.CreateObject_Example.ObjectToCreate) randomNumber;
         createObjectScript.m_SpawnObject = true;
     }
