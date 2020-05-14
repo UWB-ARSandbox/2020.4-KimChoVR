@@ -17,6 +17,7 @@ TagManager:
   - InventoryObject
   - PlayerHead
   - Block
+  - Environment
   layers:
   - Default
   - TransparentFX

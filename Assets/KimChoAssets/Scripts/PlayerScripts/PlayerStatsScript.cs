@@ -32,9 +32,9 @@ public class PlayerStatsScript : MonoBehaviour
 
         floatScript.m_MyFloats[0] = 0.0f;   // Jumped
         floatScript.m_MyFloats[1] = 100;    // Health
-        floatScript.m_MyFloats[2] = 1;      // Movement Speed
+        floatScript.m_MyFloats[2] = 2;      // Movement Speed
         floatScript.m_MyFloats[3] = 3;      // Look Speed
-        floatScript.m_MyFloats[4] = 3;      // Jump Force
+        floatScript.m_MyFloats[4] = 5;      // Jump Force
 
         floatScript.m_SendFloat = true;
     }

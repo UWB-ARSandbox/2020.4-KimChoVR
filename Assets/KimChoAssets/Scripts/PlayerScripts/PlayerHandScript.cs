@@ -78,6 +78,14 @@ public class PlayerHandScript : MonoBehaviour
                 selectedObject = other.gameObject;
             }
         }
+
+        if (other.tag == "Block" && isTriggerDown)
+        {
+            if (other.GetComponent<BlockScript>() != null)
+            {
+                other.GetComponent<BlockScript>().hasBeenHit++;
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)

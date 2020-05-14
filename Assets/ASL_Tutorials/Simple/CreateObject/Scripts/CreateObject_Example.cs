@@ -34,6 +34,7 @@ namespace SimpleDemos
 
         public static string[] blockList =
         {
+            "Air",
             "BedRock",
             "Dirt",
             "Grass"
@@ -41,6 +42,7 @@ namespace SimpleDemos
 
         public enum BlockToCreate
         {
+            Air,
             BedRock,
             Dirt,
             Grass

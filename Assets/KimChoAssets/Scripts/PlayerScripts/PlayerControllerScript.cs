@@ -50,7 +50,7 @@ public class PlayerControllerScript : MonoBehaviour
         timer += Time.fixedDeltaTime;
 
         handleMovementInput();
-        keyboardMovement();
+        //keyboardMovement();
     }
 
     void Update()
@@ -67,7 +67,6 @@ public class PlayerControllerScript : MonoBehaviour
         }
 
         handleJumpInput();
-        keyboardMovement();
     }
 
     private void keyboardMovement()

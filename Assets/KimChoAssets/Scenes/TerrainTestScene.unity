@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 19407606}
-  - component: {fileID: 19407605}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -140,30 +139,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &19407605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19407604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76e972121b9c5446483b1ccf20b345bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockTypes:
-  - {fileID: 709896670537054069, guid: a3579a86a414144d4aff26a4cb2c1aa9, type: 3}
-  - {fileID: 6331777922910719025, guid: 592a1292eecf34ed6a6b7f327dea92e1, type: 3}
-  - {fileID: 1408744794895037144, guid: 255bfcacc23b4428597acad41db4221f, type: 3}
-  generatedBlocks: []
-  amp: 4
-  freq: 5
-  rows: 10
-  cols: 10
-  scaleFactor: {x: 0.1, y: 0.1, z: 0.1}
-  limitFactor: 50
-  generateTerrain: 0
 --- !u!4 &19407606
 Transform:
   m_ObjectHideFlags: 0
@@ -177,6 +152,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &486451993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 486451995}
+  - component: {fileID: 486451994}
+  m_Layer: 0
+  m_Name: TerrainGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &486451994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486451993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e972121b9c5446483b1ccf20b345bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockTypes:
+  - {fileID: 7393621685237380605, guid: 23da5c6d0517c5c4c9dc8a7347b08ccb, type: 3}
+  - {fileID: 709896670537054069, guid: a3579a86a414144d4aff26a4cb2c1aa9, type: 3}
+  - {fileID: 6331777922910719025, guid: 592a1292eecf34ed6a6b7f327dea92e1, type: 3}
+  - {fileID: 1408744794895037144, guid: 255bfcacc23b4428597acad41db4221f, type: 3}
+  generatedBlocks: []
+  amp: 12
+  freq: 5
+  rows: 5
+  height: 5
+  cols: 5
+  yOffset: -10
+  limitFactor: 50
+  generateTerrain: 0
+  parentToGenerateTo: {fileID: 19407604}
+--- !u!4 &486451995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486451993}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &981549519
 GameObject:
