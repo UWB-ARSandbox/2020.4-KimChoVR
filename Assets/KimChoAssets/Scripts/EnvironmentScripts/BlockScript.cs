@@ -25,6 +25,7 @@ public class BlockScript : MonoBehaviour
         if (hasBeenHit >= 3)
         {
             deleteScript.m_Delete = true;
+            hasBeenHit = 0;
         }
 
         if (hasBeenHit > 0)
@@ -37,5 +38,29 @@ public class BlockScript : MonoBehaviour
             hasBeenHit = 0;
             timer = 0.0f;
         }
+    }
+
+    void spawnGrabbable()
+    {
+        string blockName = this.gameObject.name;
+        blockName = blockName.Substring(0, blockName.IndexOf('('));
+
+        Debug.Log("SDFSDFSDF: " + blockName);
+
+        ASL.ASLHelper.InstanitateASLObject("Grabbables/Blocks/" + blockName,
+                        this.transform.position, Quaternion.identity, "InteractiveContainer", "",
+                        SimpleDemos.CreateObject_Example.RepositionObject,
+                        SimpleDemos.CreateObject_Example.ClaimRecoveryFunction,
+                        null);
+        ASL.ASLHelper.InstanitateASLObject("ASLSyncObject",
+            this.transform.position, Quaternion.identity, "InteractiveContainer", "",
+            SimpleDemos.CreateObject_Example.RepositionObject,
+            SimpleDemos.CreateObject_Example.ClaimRecoveryFunction,
+            null);
+    }
+
+    private void OnDestroy()
+    {
+        spawnGrabbable();
     }
 }

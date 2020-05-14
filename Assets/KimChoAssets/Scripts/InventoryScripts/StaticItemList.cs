@@ -38,4 +38,6 @@ public static class StaticItemList
         "ItemIcon_Tree",
         "ItemIcon_Tree"
     };
+
+    public static string[] blockList = SimpleDemos.CreateObject_Example.blockList;
 }
