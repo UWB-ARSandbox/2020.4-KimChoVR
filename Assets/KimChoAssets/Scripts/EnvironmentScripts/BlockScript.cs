@@ -24,6 +24,7 @@ public class BlockScript : MonoBehaviour
     {
         if (hasBeenHit >= 3)
         {
+            spawnGrabbable();
             deleteScript.m_Delete = true;
             hasBeenHit = 0;
         }
@@ -57,10 +58,5 @@ public class BlockScript : MonoBehaviour
             SimpleDemos.CreateObject_Example.RepositionObject,
             SimpleDemos.CreateObject_Example.ClaimRecoveryFunction,
             null);
-    }
-
-    private void OnDestroy()
-    {
-        spawnGrabbable();
     }
 }
