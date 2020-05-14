@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Microsoft.MixedReality.Toolkit;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -41,6 +42,12 @@ public class InventoryScript : MonoBehaviour
                 InventoryCanvas.SetActive(true);
             }
         }
+
+        placeBlock();
+    }
+
+    public void placeBlock() 
+    {
     }
 
     public bool addItem(string itemName)
