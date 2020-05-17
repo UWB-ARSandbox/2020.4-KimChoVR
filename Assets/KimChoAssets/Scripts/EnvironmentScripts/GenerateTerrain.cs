@@ -37,7 +37,7 @@ public class GenerateTerrain : MonoBehaviour
     {
         previousPosition = this.transform.position;
 
-        spawnTime = 1.0f;
+        spawnTime = 0.3f;
         timer = 0.0f;
 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -52,13 +52,13 @@ public class GenerateTerrain : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         this.transform.position = new Vector3(BlockStaticScript.blockScaleX * Mathf.FloorToInt(playerCamera.transform.position.x / BlockStaticScript.blockScaleX), 
                                               this.transform.position.y,
                                               BlockStaticScript.blockScaleZ * Mathf.FloorToInt(playerCamera.transform.position.z / BlockStaticScript.blockScaleZ));
 
-        timer += Time.fixedDeltaTime;
+        timer += Time.deltaTime;
 
         if (this.transform.position != previousPosition && timer > spawnTime)
         {
