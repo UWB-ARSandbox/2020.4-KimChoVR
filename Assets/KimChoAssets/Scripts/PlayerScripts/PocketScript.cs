@@ -7,11 +7,24 @@ public class PocketScript : MonoBehaviour
     public GameObject InventoryObject;
     public InventoryScript InventoryScript;
 
+    public GameObject parentObject;
+
     // Start is called before the first frame update
     void Start()
     {
-        InventoryObject = GameObject.FindGameObjectWithTag("InventoryObject");
+        for (int i = 0; i < GameObject.FindGameObjectsWithTag("InventoryObject").Length; i++)
+        {
+            if (GameObject.FindGameObjectsWithTag("InventoryObject")[i].GetComponent<ASL.ASLObject>() != null &&
+                GameObject.FindGameObjectsWithTag("InventoryObject")[i].GetComponent<ASL.ASLObject>().m_Mine)
+            {
+                InventoryObject = GameObject.FindGameObjectsWithTag("InventoryObject")[i];
+                break;
+            }
+        }
+
         InventoryScript = InventoryObject.GetComponent<InventoryScript>();
+
+        parentObject = this.transform.parent.gameObject;
     }
 
     // Update is called once per frame

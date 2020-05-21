@@ -171,6 +171,11 @@ namespace SimpleDemos
                     CreateAndAddObjectToList,
                     ClaimRecoveryFunction,
                     null);
+            ASL.ASLHelper.InstanitateASLObject("InventoryObject",
+                    new Vector3(Random.Range(-2f, 2f), Random.Range(0f, 2f), Random.Range(-2f, 2f)), Quaternion.identity, "", "",
+                    CreateAndAddObjectToList,
+                    ClaimRecoveryFunction,
+                    null);
         }
 
         public static void RepositionObject(GameObject _myGameObject)
