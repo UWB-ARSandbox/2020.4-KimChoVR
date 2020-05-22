@@ -12,42 +12,23 @@ public class PocketScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < GameObject.FindGameObjectsWithTag("InventoryObject").Length; i++)
-        {
-            if (GameObject.FindGameObjectsWithTag("InventoryObject")[i].GetComponent<ASL.ASLObject>() != null &&
-                GameObject.FindGameObjectsWithTag("InventoryObject")[i].GetComponent<ASL.ASLObject>().m_Mine)
-            {
-                InventoryObject = GameObject.FindGameObjectsWithTag("InventoryObject")[i];
-                break;
-            }
-        }
-
+        InventoryObject = GameObject.FindGameObjectWithTag("InventoryObject");
         InventoryScript = InventoryObject.GetComponent<InventoryScript>();
-
         parentObject = this.transform.parent.gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (InventoryObject == null)
-        {
-            for (int i = 0; i < GameObject.FindGameObjectsWithTag("InventoryObject").Length; i++)
-            {
-                if (GameObject.FindGameObjectsWithTag("InventoryObject")[i].GetComponent<ASL.ASLObject>() != null &&
-                    GameObject.FindGameObjectsWithTag("InventoryObject")[i].GetComponent<ASL.ASLObject>().m_Mine)
-                {
-                    InventoryObject = GameObject.FindGameObjectsWithTag("InventoryObject")[i];
-                    InventoryScript = InventoryObject.GetComponent<InventoryScript>();
-                    parentObject = this.transform.parent.gameObject;
-                    break;
-                }
-            }
-        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!this.transform.parent.GetComponent<ASL.ASLObject>().m_Mine)
+        {
+            return;
+        }
+
         if (other.gameObject.tag != "Grabbable")
         {
             return;

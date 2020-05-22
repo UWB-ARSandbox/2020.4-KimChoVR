@@ -44,12 +44,7 @@ public class GenerateTerrain : MonoBehaviour
 
         if (GameLiftManager.GetInstance().m_PeerId == 1)
         {
-            generateCastleASL();
-            renderTerrain();
-        } else
-        {
-            new WaitForSeconds(5);
-            renderTerrain();
+            //generateCastleASL();
         }
 
         environmentParent = GameObject.FindGameObjectWithTag("Environment");

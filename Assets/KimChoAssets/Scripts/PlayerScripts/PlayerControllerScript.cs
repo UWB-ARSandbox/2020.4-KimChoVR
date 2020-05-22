@@ -36,6 +36,8 @@ public class PlayerControllerScript : MonoBehaviour
 
         this.transform.position = playerView.transform.position;
         playSpaceOffset = playerView.transform.position - playSpace.transform.position;
+
+        this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     // Update is called once per frame
@@ -48,6 +50,16 @@ public class PlayerControllerScript : MonoBehaviour
         }
 
         timer += Time.fixedDeltaTime;
+
+        if (this.gameObject.GetComponent<Rigidbody>().isKinematic)
+        {
+            if (timer >= 10f)
+            {
+                this.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            }
+
+            return;
+        }
 
         handleMovementInput();
         //keyboardMovement();
