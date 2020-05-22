@@ -32,6 +32,11 @@ public class InventoryScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!this.gameObject.GetComponent<ASL.ASLObject>().m_Mine)
+        {
+            this.gameObject.SetActive(false);
+        }
+
         if (Input.GetKeyDown(KeyCode.JoystickButton6))
         {
             if (InventoryCanvas.activeSelf)
