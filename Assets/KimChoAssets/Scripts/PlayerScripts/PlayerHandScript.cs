@@ -247,7 +247,11 @@ public class PlayerHandScript : MonoBehaviour
         {
             if (other.GetComponent<BlockScript>() != null)
             {
-                other.GetComponent<BlockScript>().hasBeenHit++;
+                if (other.GetComponent<BlockScript>().isBreakable)
+                {
+                    other.GetComponent<BlockScript>().hasBeenHit++;
+                    other.GetComponent<BlockScript>().timer = 0;
+                }
             }
         }
     }

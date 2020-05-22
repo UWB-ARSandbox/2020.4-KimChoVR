@@ -37,14 +37,14 @@ public class GenerateTerrain : MonoBehaviour
     {
         previousPosition = this.transform.position;
 
-        spawnTime = 0.3f;
+        spawnTime = 1f;
         timer = 0.0f;
 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
 
         if (GameLiftManager.GetInstance().m_PeerId == 1)
         {
-            //generateNewTerrainASL();
+            generateCastleASL();
         }
 
         environmentParent = GameObject.FindGameObjectWithTag("Environment");
@@ -232,121 +232,44 @@ public class GenerateTerrain : MonoBehaviour
         }
     }
 
+    void generateCastleASL()
+    {
+        for (int x = -10; x <= 10; x++)
+        {
+            for (int y = 2; y <= 10; y++)
+            {
+                for (int z = -10; z <= 10; z++)
+                {
+                    bool overlap = checkForCollisions(new Vector3(x * BlockStaticScript.blockScaleX + this.transform.position.x,
+                                                                  y * BlockStaticScript.blockScaleY + this.transform.position.y,
+                                                                  z * BlockStaticScript.blockScaleZ + this.transform.position.z), 0.15f);
+
+                    if (!overlap)
+                    {
+                        if (x >= -2 && x <= 2 && y <= 5 && y >= 1 && z == -10)
+                        {
+                            spawnBlock(x, y, z, SimpleDemos.CreateObject_Example.BlockToCreate.Air);
+                            continue;
+                        }
+
+                        if (x == -10 || x == 10 ||
+                            z == -10 || z == 10 ||
+                            y == 2)
+                        {
+                            spawnBlock(x, y, z, SimpleDemos.CreateObject_Example.BlockToCreate.StoneBrick);
+                        } else
+                        {
+                            spawnBlock(x, y, z, SimpleDemos.CreateObject_Example.BlockToCreate.Air);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public static void addObjectToList(GameObject _myGameObject)
     {
         //_myGameObject.SetActive(false);
         m_generatedBlocks.Add(_myGameObject);
     }
 }
-
-
-/*
- * void generateNewTerrain()
-    {
-        limitValues();
-
-        for (int x = -rows; x < rows; x++)
-        {
-            for (int z = -cols; z < cols; z++)
-            {
-                int landStartPoint = Mathf.FloorToInt(Mathf.PerlinNoise((x + this.transform.position.x) / (freq * 1.0f), (z + this.transform.position.z) / (freq * 1.0f)) * (amp * 1.0f));
-
-                for (int y = height; y >= -height; y--)
-                {
-                    Vector3 spawnPos = new Vector3((x * BlockStaticScript.blockScaleX) + this.transform.position.x,
-                    (y * BlockStaticScript.blockScaleY) + this.transform.position.y,
-                    (z * BlockStaticScript.blockScaleZ) + this.transform.position.z);
-                    float radius = 0.15f;
-
-                    bool overlap = false;
-
-                    Collider[] colliderList = Physics.OverlapSphere(spawnPos, radius);
-
-                    for (int i = 0; i < colliderList.Length; i++)
-                    {
-                        if (colliderList[i].gameObject.tag == "Block")
-                        {
-                            overlap = true;
-                        }
-                    }
-
-                    GameObject newBlock;
-
-                    if (!overlap)
-                    {
-                        if (y == landStartPoint)
-                        {
-                            newBlock = Instantiate(blockTypes[3], parentToGenerateTo.transform);
-                        } else if (y < landStartPoint)
-                        {
-                            newBlock = Instantiate(blockTypes[2], parentToGenerateTo.transform);
-                        } else if (y == -height)
-                        {
-                            newBlock = Instantiate(blockTypes[1], parentToGenerateTo.transform);
-                        }
-                        else
-                        {
-                            newBlock = Instantiate(blockTypes[0], parentToGenerateTo.transform);
-                        }
-
-                        newBlock.transform.position = new Vector3((x * BlockStaticScript.blockScaleX) + this.transform.position.x,
-                            (y * BlockStaticScript.blockScaleY) + this.transform.position.y,
-                            (z * BlockStaticScript.blockScaleZ) + this.transform.position.z);
-                    }
-                }
-            }
-        }
-    }
-
-    // Fills in blocks under the upper layered blocks
-    void fillUnderTerrain(int x, int y, int z, int blockType)
-    {
-
-        for (; y >= 0; y--)
-        {
-            GameObject newBlock;
-
-            Vector3 spawnPos = new Vector3((x * BlockStaticScript.blockScaleX) + this.transform.position.x,
-                    (y * BlockStaticScript.blockScaleY) + this.transform.position.y,
-                    (z * BlockStaticScript.blockScaleZ) + this.transform.position.z);
-            float radius = 0.15f;
-
-            bool overlap = false;
-
-            Collider[] colliderList = Physics.OverlapSphere(spawnPos, radius);
-
-            for (int i = 0; i < colliderList.Length; i++)
-            {
-                if (colliderList[i].gameObject.tag == "Block")
-                {
-                    overlap = true;
-                }
-            }
-
-            if (overlap)
-            {
-                Debug.Log("UNDER FOUND");
-                continue;
-            }
-
-            if (y == 0)
-            {
-                newBlock = Instantiate(blockTypes[0], parentToGenerateTo.transform);
-            }
-            else
-            {
-                newBlock = Instantiate(blockTypes[blockType], parentToGenerateTo.transform);
-            }
-
-            newBlock.transform.position = new Vector3((x * BlockStaticScript.blockScaleX) + this.transform.position.x,
-                        (y * BlockStaticScript.blockScaleY) + this.transform.position.y,
-                        (z * BlockStaticScript.blockScaleZ) + this.transform.position.z);
-
-            newBlock.transform.localScale = new Vector3(BlockStaticScript.blockScaleX,
-                BlockStaticScript.blockScaleY,
-                BlockStaticScript.blockScaleZ);
-
-            generatedBlocks.Add(newBlock);
-        }
-    }
- */

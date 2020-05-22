@@ -5,8 +5,10 @@ using UnityEngine;
 public class BlockScript : MonoBehaviour
 {
 
+    public bool isBreakable = true;
     public int hasBeenHit = 0;
-    private float timer = 0.0f;
+    public int blockHitPoints = 1;
+    public float timer = 0.0f;
 
     private SimpleDemos.DeleteObject_Example deleteScript;
 
@@ -22,7 +24,7 @@ public class BlockScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hasBeenHit >= 3)
+        if (hasBeenHit >= blockHitPoints && isBreakable)
         {
             spawnGrabbable();
             deleteScript.m_Delete = true;
@@ -34,7 +36,7 @@ public class BlockScript : MonoBehaviour
             timer += Time.fixedDeltaTime;
         }
 
-        if (timer >= 4.5f)
+        if (timer >= 1f)
         {
             hasBeenHit = 0;
             timer = 0.0f;
@@ -45,8 +47,6 @@ public class BlockScript : MonoBehaviour
     {
         string blockName = this.gameObject.name;
         blockName = blockName.Substring(0, blockName.IndexOf('('));
-
-        Debug.Log("SDFSDFSDF: " + blockName);
 
         ASL.ASLHelper.InstanitateASLObject("Grabbables/Blocks/" + blockName,
                         this.transform.position, Quaternion.identity, "InteractiveContainer", "",

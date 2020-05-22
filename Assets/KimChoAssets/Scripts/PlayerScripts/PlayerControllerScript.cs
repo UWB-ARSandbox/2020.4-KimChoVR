@@ -98,6 +98,8 @@ public class PlayerControllerScript : MonoBehaviour
         //playSpace.transform.rotation = this.transform.rotation;
         playSpace.transform.position = this.transform.position - playSpaceOffset + new Vector3(0, 0.7f, 0);
 
+        this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, playerView.transform.localEulerAngles.y, this.transform.localEulerAngles.z);
+
         if (timer >= 2)
         {
             // Handle Position
@@ -108,7 +110,7 @@ public class PlayerControllerScript : MonoBehaviour
 
             // Handle Rotation
             this.onlineController.m_MyRotationAxis = SimpleDemos.TransformObjectViaLocalSpace_Example.RotationAxis.custom;
-            this.onlineController.m_MyCustomAxis = this.transform.localEulerAngles;
+            this.onlineController.m_MyCustomAxis = new Vector3(playSpace.transform.localEulerAngles.y, playerView.transform.localEulerAngles.y, this.transform.localEulerAngles.z);
 
             this.onlineController.m_SendTransform = true;
             timer = 0;

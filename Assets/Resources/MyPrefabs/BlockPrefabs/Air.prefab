@@ -109,7 +109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b446885f6511a4ad78d692ca80f4ee95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
+  isBreakable: 0
+  hasBeenHit: 0
+  blockHitPoints: 100
+  timer: 0
 --- !u!114 &6324611520079969961
 MonoBehaviour:
   m_ObjectHideFlags: 0

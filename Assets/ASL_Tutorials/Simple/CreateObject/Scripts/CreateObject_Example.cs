@@ -37,7 +37,9 @@ namespace SimpleDemos
             "Air",
             "BedRock",
             "Dirt",
-            "Grass"
+            "Grass",
+            "Stone",
+            "StoneBrick"
         };
 
         public enum BlockToCreate
@@ -45,7 +47,9 @@ namespace SimpleDemos
             Air,
             BedRock,
             Dirt,
-            Grass
+            Grass,
+            Stone,
+            StoneBrick
         }
 
         public enum ObjectToCreate

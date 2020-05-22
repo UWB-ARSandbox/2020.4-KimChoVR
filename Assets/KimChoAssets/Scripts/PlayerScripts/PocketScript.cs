@@ -32,7 +32,17 @@ public class PocketScript : MonoBehaviour
     {
         if (InventoryObject == null)
         {
-            Destroy(this.gameObject);
+            for (int i = 0; i < GameObject.FindGameObjectsWithTag("InventoryObject").Length; i++)
+            {
+                if (GameObject.FindGameObjectsWithTag("InventoryObject")[i].GetComponent<ASL.ASLObject>() != null &&
+                    GameObject.FindGameObjectsWithTag("InventoryObject")[i].GetComponent<ASL.ASLObject>().m_Mine)
+                {
+                    InventoryObject = GameObject.FindGameObjectsWithTag("InventoryObject")[i];
+                    InventoryScript = InventoryObject.GetComponent<InventoryScript>();
+                    parentObject = this.transform.parent.gameObject;
+                    break;
+                }
+            }
         }
     }
 
