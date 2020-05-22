@@ -59,4 +59,11 @@ public class BlockScript : MonoBehaviour
             SimpleDemos.CreateObject_Example.ClaimRecoveryFunction,
             null);
     }
+
+    private void OnDestroy()
+    {
+        GenerateTerrain.blockDictionary.Remove(this.transform.position);
+        GenerateTerrain.blockDictionary.Add(this.transform.position, null);
+        GenerateTerrain.prevChildCount--;
+    }
 }

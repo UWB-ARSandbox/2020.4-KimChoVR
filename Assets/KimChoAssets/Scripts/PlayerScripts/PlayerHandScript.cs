@@ -211,7 +211,11 @@ public class PlayerHandScript : MonoBehaviour
         if (GenerateTerrain.blockDictionary.ContainsKey(pos))
         {
             GenerateTerrain.blockDictionary.TryGetValue(pos, out outBlock);
-            if (outBlock.gameObject.name == "Air" || outBlock.gameObject.name == "Air(Clone)")
+
+            if (outBlock == null)
+            {
+                GenerateTerrain.blockDictionary.Remove(pos);
+            } else if (outBlock.gameObject.name == "Air" || outBlock.gameObject.name == "Air(Clone)")
             {
                 outBlock.GetComponent<SimpleDemos.DeleteObject_Example>().m_Delete = true;
                 GenerateTerrain.blockDictionary.Remove(pos);
@@ -247,6 +251,11 @@ public class PlayerHandScript : MonoBehaviour
         {
             if (other.GetComponent<BlockScript>() != null)
             {
+                other.GetComponent<ASL.ASLObject>().SendAndSetClaim(() =>
+                {
+
+                });
+
                 if (other.GetComponent<BlockScript>().isBreakable)
                 {
                     other.GetComponent<BlockScript>().hasBeenHit++;

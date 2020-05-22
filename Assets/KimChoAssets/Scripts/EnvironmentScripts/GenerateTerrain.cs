@@ -30,7 +30,7 @@ public class GenerateTerrain : MonoBehaviour
     private float spawnTime;
     private float timer;
 
-    private int prevChildCount;
+    public static int prevChildCount;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +58,8 @@ public class GenerateTerrain : MonoBehaviour
                                               this.transform.position.y,
                                               BlockStaticScript.blockScaleZ * Mathf.FloorToInt(playerCamera.transform.position.z / BlockStaticScript.blockScaleZ));
 
+        addNewBlocksToDictionary();
+
         timer += Time.deltaTime;
 
         if (this.transform.position != previousPosition && timer > spawnTime)
@@ -75,7 +77,7 @@ public class GenerateTerrain : MonoBehaviour
         }
     }
 
-    void renderTerrain()
+    void addNewBlocksToDictionary()
     {
         for (; prevChildCount < environmentParent.transform.childCount; prevChildCount++)
         {
@@ -87,7 +89,25 @@ public class GenerateTerrain : MonoBehaviour
 
             blockDictionary.Add(environmentParent.transform.GetChild(prevChildCount).transform.position, environmentParent.transform.GetChild(prevChildCount).gameObject);
             environmentParent.transform.GetChild(prevChildCount).gameObject.SetActive(false);
+
+            GameObject temp = environmentParent.transform.GetChild(prevChildCount).gameObject;
+
+            if (temp.transform.position.x >= this.transform.position.x - BlockStaticScript.blockScaleX * viewDistance &&
+                temp.transform.position.x <= this.transform.position.x + BlockStaticScript.blockScaleX * viewDistance &&
+                temp.transform.position.y >= this.transform.position.y - BlockStaticScript.blockScaleX * viewDistance &&
+                temp.transform.position.y <= this.transform.position.y + BlockStaticScript.blockScaleX * viewDistance &&
+                temp.transform.position.z >= this.transform.position.x - BlockStaticScript.blockScaleX * viewDistance &&
+                temp.transform.position.z <= this.transform.position.x + BlockStaticScript.blockScaleX * viewDistance)
+            {
+                temp.gameObject.SetActive(true);
+            }
+
         }
+    }
+
+    void renderTerrain()
+    {
+        addNewBlocksToDictionary();
 
         float xViewDistance = BlockStaticScript.blockScaleX * viewDistance;
         float yViewDistance = BlockStaticScript.blockScaleY * viewDistance;
