@@ -83,8 +83,17 @@ public class GenerateTerrain : MonoBehaviour
         {
             if (blockDictionary.ContainsKey(environmentParent.transform.GetChild(prevChildCount).transform.position))
             {
-                environmentParent.transform.GetChild(prevChildCount).GetComponent<SimpleDemos.DeleteObject_Example>().m_Delete = true;
-                continue;
+                GameObject outBlock = null;
+                blockDictionary.TryGetValue(environmentParent.transform.GetChild(prevChildCount).transform.position, out outBlock);
+
+                if (outBlock != null)
+                {
+                    environmentParent.transform.GetChild(prevChildCount).GetComponent<SimpleDemos.DeleteObject_Example>().m_Delete = true;
+                    continue;
+                } else
+                {
+                    blockDictionary.Remove(environmentParent.transform.GetChild(prevChildCount).transform.position);
+                }
             }
 
             blockDictionary.Add(environmentParent.transform.GetChild(prevChildCount).transform.position, environmentParent.transform.GetChild(prevChildCount).gameObject);
