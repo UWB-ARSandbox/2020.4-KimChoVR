@@ -237,7 +237,7 @@ public class GenerateTerrain : MonoBehaviour
     {
         limitValues();
 
-        if (this.transform.position.z <= -30 && this.transform.position.z >= -50)
+        if (this.transform.position.z <= -30 && this.transform.position.z >= -40)
         {
             return;
         }
