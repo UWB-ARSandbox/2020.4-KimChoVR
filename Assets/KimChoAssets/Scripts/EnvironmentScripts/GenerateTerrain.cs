@@ -237,15 +237,15 @@ public class GenerateTerrain : MonoBehaviour
     {
         limitValues();
 
-        if (this.transform.position.z <= -30 && this.transform.position.z >= -40)
-        {
-            return;
-        }
-
         for (int x = -rows; x < rows; x++)
         {
             for (int z = -cols; z < cols; z++)
             {
+                if (this.transform.position.z + (z * BlockStaticScript.blockScaleZ) <= -30 && this.transform.position.z + (z * BlockStaticScript.blockScaleZ) >= -40)
+                {
+                    continue;
+                }
+
                 int landStartPoint = Mathf.FloorToInt(Mathf.PerlinNoise((x + this.transform.position.x + Random.Range(-1f, 1f)) / (freq * 1.0f),
                     (z + this.transform.position.z + Random.Range(-1f, 1f)) / (freq * 1.0f))
                     * (amp * 1.0f));

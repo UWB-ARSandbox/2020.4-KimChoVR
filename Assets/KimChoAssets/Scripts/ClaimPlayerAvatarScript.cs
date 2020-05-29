@@ -28,7 +28,7 @@ public class ClaimPlayerAvatarScript : MonoBehaviour
 
         if (GameLiftManager.GetInstance().m_PeerId == 2)
         {
-            playspace.transform.position = new Vector3(-10, 5, -80);
+            playspace.transform.position = new Vector3(10, 5, -80);
 
             terrainGenerator.GetComponent<GenerateTerrain>().generateTerrain = true;
         }
