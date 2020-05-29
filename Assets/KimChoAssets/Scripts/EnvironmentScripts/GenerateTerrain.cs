@@ -31,13 +31,14 @@ public class GenerateTerrain : MonoBehaviour
     private float timer;
 
     public static int prevChildCount;
+    public static int prevBlockCount;
 
     // Start is called before the first frame update
     void Start()
     {
         previousPosition = this.transform.position;
 
-        spawnTime = 1f;
+        spawnTime = 0.2f;
         timer = 0.0f;
 
         playerCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -49,20 +50,24 @@ public class GenerateTerrain : MonoBehaviour
 
         environmentParent = GameObject.FindGameObjectWithTag("Environment");
         prevChildCount = 0;
+        prevBlockCount = m_generatedBlocks.Count;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         this.transform.position = new Vector3(BlockStaticScript.blockScaleX * Mathf.FloorToInt(playerCamera.transform.position.x / BlockStaticScript.blockScaleX), 
                                               this.transform.position.y,
                                               BlockStaticScript.blockScaleZ * Mathf.FloorToInt(playerCamera.transform.position.z / BlockStaticScript.blockScaleZ));
 
-        addNewBlocksToDictionary();
-
         timer += Time.deltaTime;
 
-        if (this.transform.position != previousPosition && timer > spawnTime)
+        if (m_generatedBlocks.Count != prevBlockCount)
+        {
+            addNewBlocksToDictionary(true);
+        }
+
+        if (this.transform.position != previousPosition)
         {
             generateTerrain = true;
             renderTerrain();
@@ -77,7 +82,7 @@ public class GenerateTerrain : MonoBehaviour
         }
     }
 
-    void addNewBlocksToDictionary()
+    public void addNewBlocksToDictionary(bool placedByPlayer)
     {
         for (; prevChildCount < environmentParent.transform.childCount; prevChildCount++)
         {
@@ -97,7 +102,13 @@ public class GenerateTerrain : MonoBehaviour
             }
 
             blockDictionary.Add(environmentParent.transform.GetChild(prevChildCount).transform.position, environmentParent.transform.GetChild(prevChildCount).gameObject);
-            environmentParent.transform.GetChild(prevChildCount).gameObject.SetActive(false);
+            if (!placedByPlayer)
+            {
+                environmentParent.transform.GetChild(prevChildCount).gameObject.SetActive(false);
+            } else
+            {
+                environmentParent.transform.GetChild(prevChildCount).gameObject.SetActive(true);
+            }
 
             GameObject temp = environmentParent.transform.GetChild(prevChildCount).gameObject;
 
@@ -114,9 +125,9 @@ public class GenerateTerrain : MonoBehaviour
         }
     }
 
-    void renderTerrain()
+    public void renderTerrain()
     {
-        addNewBlocksToDictionary();
+        addNewBlocksToDictionary(false);
 
         float xViewDistance = BlockStaticScript.blockScaleX * viewDistance;
         float yViewDistance = BlockStaticScript.blockScaleY * viewDistance;
@@ -226,7 +237,7 @@ public class GenerateTerrain : MonoBehaviour
     {
         limitValues();
 
-        if (this.transform.position.z <= -30 && this.transform.position.z >= -60)
+        if (this.transform.position.z <= -30 && this.transform.position.z >= -50)
         {
             return;
         }
