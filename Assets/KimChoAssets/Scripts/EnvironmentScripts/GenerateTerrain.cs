@@ -44,7 +44,7 @@ public class GenerateTerrain : MonoBehaviour
 
         if (GameLiftManager.GetInstance().m_PeerId == 1)
         {
-            //generateCastleASL();
+            //generateNewTerrainASL();
         }
 
         environmentParent = GameObject.FindGameObjectWithTag("Environment");
@@ -52,7 +52,7 @@ public class GenerateTerrain : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         this.transform.position = new Vector3(BlockStaticScript.blockScaleX * Mathf.FloorToInt(playerCamera.transform.position.x / BlockStaticScript.blockScaleX), 
                                               this.transform.position.y,
@@ -225,6 +225,11 @@ public class GenerateTerrain : MonoBehaviour
     void generateNewTerrainASL()
     {
         limitValues();
+
+        if (this.transform.position.z <= -30 && this.transform.position.z >= -50)
+        {
+            return;
+        }
 
         for (int x = -rows; x < rows; x++)
         {
