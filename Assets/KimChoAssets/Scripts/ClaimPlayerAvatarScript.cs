@@ -6,6 +6,7 @@ using UnityEngine;
 public class ClaimPlayerAvatarScript : MonoBehaviour
 {
     public GameObject playerView;
+    public GameObject playspace;
     public GameObject terrainGenerator;
 
 
@@ -13,18 +14,21 @@ public class ClaimPlayerAvatarScript : MonoBehaviour
     void Start()
     {
         playerView = GameObject.FindGameObjectWithTag("MainCamera");
+        playspace = GameObject.FindGameObjectWithTag("Player");
         terrainGenerator = GameObject.Find("TerrainGenerator");
 
-        if (GameLiftManager.GetInstance().m_PeerId % 2 != 0)
+        Debug.Log("MY PEER ID: " + GameLiftManager.GetInstance().m_PeerId);
+
+        if (GameLiftManager.GetInstance().m_PeerId == 1)
         {
-            playerView.transform.position = new Vector3(-10, 5, -80);
+            playspace.transform.position = new Vector3(-10, 5, -80);
 
             terrainGenerator.GetComponent<GenerateTerrain>().generateTerrain = true;
         }
 
-        if (GameLiftManager.GetInstance().m_PeerId % 2 == 0)
+        if (GameLiftManager.GetInstance().m_PeerId == 2)
         {
-            playerView.transform.position = new Vector3(10, 5, -80);
+            playspace.transform.position = new Vector3(-10, 5, -80);
 
             terrainGenerator.GetComponent<GenerateTerrain>().generateTerrain = true;
         }
