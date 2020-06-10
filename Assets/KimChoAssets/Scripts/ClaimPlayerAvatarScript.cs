@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * ClaimPlayerAvatarScript
+ * -----------------------
+ * This script gives ownership of avatar body parts
+ * to a connected user.
+ */
 public class ClaimPlayerAvatarScript : MonoBehaviour
 {
     public GameObject playerView;

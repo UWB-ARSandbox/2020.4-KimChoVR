@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * ASLObjectSync
+ * -------------
+ * This script will sync an asl object with an asl controller object.
+ */
 public class ASLObjectSync : MonoBehaviour
 {
 

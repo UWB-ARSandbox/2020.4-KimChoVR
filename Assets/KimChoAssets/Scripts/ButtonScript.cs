@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * ButtonScript
+ * ------------
+ * This script will attach to an asl object creator script.
+ * This method also contains functions for triggering the creation
+ * of objects.
+ */
 public class ButtonScript : MonoBehaviour
 {
     private SimpleDemos.CreateObject_Example createObjectScript;

@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * DestroyOnTouch
+ * --------------
+ * This script will be in charge of handling
+ * the deletion of an attached object.
+ */
 public class DestroyOnTouch : MonoBehaviour
 {
     public enum DestroyOption

@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * DontDestroyRayCast
+ * ------------------
+ * This script will attach to an object and prevent it
+ * from getting destroyed upon changing scenes.
+ */
 public class DontDestroyRaycast : MonoBehaviour
 {
     private GameObject raycastCamera;
